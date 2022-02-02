@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en"><generator uri="https://jekyllrb.com/" version="4.2.1">Jekyll</generator><link href="https://amirpourmand.ir/feed.xml" rel="self" type="application/atom+xml" /><link href="https://amirpourmand.ir/" rel="alternate" type="text/html" hreflang="en" /><updated>2022-02-02T20:07:47+00:00</updated><id>https://amirpourmand.ir/feed.xml</id><title type="html">Amir Pourmand</title><subtitle>A place to share my thoughts and also host the resume! 
+</subtitle><entry><title type="html">Most Useful Sites</title><link href="https://amirpourmand.ir/blog/2021/useful-sites/" rel="alternate" type="text/html" title="Most Useful Sites" /><published>2021-09-17T23:00:00+00:00</published><updated>2021-09-17T23:00:00+00:00</updated><id>https://amirpourmand.ir/blog/2021/useful-sites</id><content type="html" xml:base="https://amirpourmand.ir/blog/2021/useful-sites/"><![CDATA[<p>These are mostly bookmarks I have in my browser. I thought they could be helpful to others, so I compiled them here.</p>
+
+<h2 id="for-researchers">For Researchers</h2>
+
+<p><a href="grammarly.com">Grammarly</a></p>
+
+<p>Just a great tool !</p>
+
+<p><a href="https://www.wordtune.com/">WordTune</a></p>
+
+<p>Basically, it paraphrases my sentences into better ones, and I found this one to be very intelligent too.</p>
+
+<p><a href="https://distill.pub/">Distill.pub</a></p>
+
+<p>Machine Learning researchers should check out this site. There’s no better explanation than what its creators say, “<a href="https://distill.pub/">Distill</a>is dedicated to clear explanations of machine learning.”</p>
+
+<p><a href="http://connectedpapers.com" title="Connected Papers">Connected Papers</a></p>
+
+<p>For researchers, this is an excellent tool, especially when searching for review articles. Enter the paper title, and you’ll be able to see a beautiful graph of connected papers, as the name suggests!</p>
+
+<p><a href="https://paperswithcode.com">Papers with code</a></p>
+
+<p>Reviewing current state-of-the-art in machine learning (SOTA)</p>
+
+<p><a href="https://mathpix.com/">MathPix</a></p>
+
+<p>A powerful program for converting math formulas in Image or PDF to Latex.</p>
+
+<p><a href="https://mlstory.org/">ML Story</a></p>
+
+<p>An intuitive explanation of Machine learning for starters.</p>
+
+<p><a href="https://www.mathcha.io/">Online Mathematics Editor</a></p>
+
+<p>A fast way to write and share mathematics, especially when you don’t have access to LATEX. Also, whenever I need to write some formulas, I first come here and write them, then export them into LATEX. It is a lot easier.</p>
+
+<h2 id="tools">Tools</h2>
+
+<p><a href="https://photopea.com">Advanced Photo Editor</a></p>
+
+<p>Photoshop-like software for editing purposes. I think It is a fantastic alternative for someone like me who, you know, edits photos once a year! If you want something to use daily, I would recommend <a href="https://krita.org/en/">Krita</a>.</p>
+
+<p><a href="https://wiki.archlinux.org/title/List_of_applications">The official list of applications - ArchWiki</a></p>
+
+<p><a href="https://aur.archlinux.org/packages/">AUR packages for Arch Linux</a></p>
+
+<p>If you are familiar with Arch Linux, you know that these two are the only sites you need to install any software!</p>
+
+<p><a href="https://pkgs.org/">Chaotic AUR</a></p>
+
+<p>A Useful site which provides compiled files to easily install a package</p>
+
+<h2 id="useful-sites-for-machine-learning">Useful sites for machine learning</h2>]]></content><author><name></name></author><summary type="html"><![CDATA[Here is a list of websites which I think are great]]></summary></entry><entry><title type="html">Bayesian Linear Regression Full Derivation</title><link href="https://amirpourmand.ir/blog/2021/bayesian-linear-regression/" rel="alternate" type="text/html" title="Bayesian Linear Regression Full Derivation" /><published>2021-03-20T17:00:00+00:00</published><updated>2021-03-20T17:00:00+00:00</updated><id>https://amirpourmand.ir/blog/2021/bayesian-linear-regression</id><content type="html" xml:base="https://amirpourmand.ir/blog/2021/bayesian-linear-regression/"><![CDATA[<h2 id="introduction">Introduction</h2>
+
+<p>Many articles like <a href="https://towardsdatascience.com/introduction-to-bayesian-linear-regression-e66e60791ea7">this</a> in the <a href="https://towardsdatascience.com/">towardsdatascience</a> tell us how to use Bayesian Linear Regression and why. I am not going to repeat that. I want to derive the formulas from scratch entirely.</p>
+
+<p>I also understand that comprehending this stuff is slightly challenging if you don’t have a strong mathematics background.</p>
+
+<blockquote>
+  <p>Note: All of my notation is from Bishop’s book.</p>
+</blockquote>
+
+<p>The main difference between Bayesian and Non-Bayesian regression is that Bayesian regression assumes that weights are Random variables.</p>
+
+<p>First, we should define the distribution of <strong>w</strong> and <strong>e</strong> and also our target function. We assume that we have a Gaussian prior over <strong>w,</strong> which is our weight vector, So</p>
+
+\[w \sim N(m_0,s_0)\]
+
+<p>which means that we have m0 as our mean vector, and s0 is our covariance matrix. Now, if we write our target function, we would have:</p>
+
+\[\begin{aligned}
+y &amp;=f(x, w)+\epsilon \\
+&amp;=w^{T} \phi(x)+\epsilon
+\end{aligned}\]
+
+<p>In which <strong>φ</strong> is any transformation on x. If you are not familiar with transformations, assume that φ(x) = x, and you’re good to go.</p>
+
+<p>Just one thing is missing, what is the distribution of error?</p>
+
+\[\epsilon \sim N\left(0, \sigma^{2}\right)=N\left(0, \beta^{-1}\right)\]
+
+<blockquote>
+  <p>Note: we define β as the noise precision parameter, which is the reciprocal noise variance.</p>
+</blockquote>
+
+<p>The Likelihood function would be:</p>
+
+\[p(y \mid X, w, \beta)=\prod_{i=1}^{N} p\left(y_{n} \mid x_{n}, w, b\right)=\prod_{i=1}^{N} N\left(y_{n} \mid w^{T} \phi\left(x_{n}\right), \beta^{-1}\right)\]
+
+<p>Next, we can compute the posterior distribution, which is proportional to the product of likelihood and prior. Note that we already know that because the prior is Gaussian, the posterior would be gaussian too! But As I said, I want to compute that to make sure everything is right entirely.</p>
+
+\[\text { posterior } \propto \text { likelihood } \times \text { prior }\]
+
+<h2 id="deriving-prior-and-posterior-distributions">Deriving prior and posterior distributions</h2>
+
+<p>The posterior is computed by the usual procedure of <strong>completing the square</strong>, so I ignore all constants and focus on the power of exponentials. Again, notice that we want to compute the mean and variance of the posterior.</p>
+
+<p>From likelihood perspective, we have:</p>
+
+\[\log \text { likelihood }=\frac{-\beta}{2} \sum_{i=1}^{N}\left(y_{n}-w^{T} \phi(x)\right)^{2}\]
+
+<p>and from prior perspective, we have:</p>
+
+\[\text { log prior }=\frac{-1}{2}\left(w-m_{0}\right)^{T} S_{0}^{-1}\left(w-m_{0}\right)\]
+
+<p>You already know that product in logarithm would result in sum. So we have:</p>
+
+\[\begin{aligned}
+\log \text { Posterior } &amp;=\frac{-\beta}{2} \sum_{n=1}^{N}\left(y_{n}-w^{T} \phi(x)\right)^{2}+\frac{-1}{2}\left(w-m_{0}\right)^{T} S_{0}^{-1}\left(w-m_{0}\right) \\
+&amp;\left.=\frac{-\beta}{2} \sum_{n=1}^{N}\left(y_{n}^{2}-2 y_{n} w^{T} \phi(x)+w^{T} \phi\left(x_{n}\right) \phi\left(x_{n}\right)^{T} w\right)\right)+\frac{-1}{2}\left(w-m_{0}\right)^{T} S_{0}{ }^{1}\left(w-m_{0}\right) \\
+&amp;=\frac{-1}{2} w^{T}\left[\sum_{n=1}^{N} \beta \phi\left(x_{n}\right) \phi\left(x_{n}\right)^{T}+S_{0}^{-1}\right] w+\frac{-1}{2}\left[-2 m_{0}^{T} s_{0}-\frac{1}{2} \sum_{n=1}^{N} 2 \beta y_{n} \phi\left(x_{n}\right)^{T}\right] w+const
+\end{aligned}\]
+
+<p>Then from comparing the powers with standard Gaussian, we have:</p>
+
+\[S_{N}^{-1}=S_{0}^{-1}+\beta \phi^{T} \phi\]
+
+<p>and by comparing the second expression we get:</p>
+
+\[\begin{array}{c}
+-2 m_{N}^{T} S_{N}^{-1}=-2 m_{0}^{T} S_{0}^{-1}-2 \beta y^{T} \phi \\
+m_{N}=S_{N}^{T}\left(S_{0}^{T}\right)^{-1} m_{0}+S_{N}^{T} \beta y^{T} \phi
+\end{array}\]
+
+<p>So we computed the mean and variance of the posterior distribution, but It is not the end. We should use predictive posterior to derive the final result.</p>
+
+<h2 id="deriving-predictive-posterior-distribution">Deriving predictive posterior distribution</h2>
+
+<p>Let’s get back to our big picture. We computed the posterior, which is the distribution of weights, but what is the distribution of our prediction (y<em>) when we have new data (x</em>)?</p>
+
+<p>Let’s say our new data is (<strong>x<em>,y</em></strong>), and we want to derive the distribution of y* given x*. What should we do? The answer lies in <strong>predictive distribution.</strong></p>
+
+<p>Wait. We can have one slight improvement here. Because we can always normalize the input data to have a mean of 0, we can assume that our weight prior is also Normal with a mean of 0. So we can take that:</p>
+
+\[p(w \mid \alpha)=N\left(w \mid 0, \alpha^{-1} I\right)\]
+
+<p>So the posterior mean and variance would be:</p>
+
+\[\begin{array}{r}
+M_{N}=\beta S_{N} \phi^{T} y \\
+S_{N}=\alpha I+\beta \phi^{T} \phi
+\end{array}\]
+
+<p>We can not go further until we know how to get the predictive posterior. So the predictive posterior distribution is defined as:</p>
+
+\[p\left(y^{*} \mid x^{*}, x, y, \alpha, \beta\right)=\int p\left(y^{*} \mid x^{*}, w, \beta\right) p\left(w \mid x^{*}, x, y, \alpha, \beta\right) d w\]
+
+<p>The first time I saw this formula, I wanted to run away and live in the desert. Bear with me, All we’re doing is integrating out <strong>w</strong> since we don’t know what it is. Sometimes, there is a more straightforward way. Fortunately, a proven formula can help us skip the integration part and get to the result.</p>
+
+<blockquote>
+  <p>Note: If you want to prove it yourself, you can look at Marginal and conditional Gaussian from the bishop’s book.</p>
+</blockquote>
+
+<p><strong>Theorem:</strong> Given a marginal distribution for <strong>x</strong> and a conditional distribution for <strong>y</strong> in the form:</p>
+
+\[\begin{aligned}
+p(x) &amp;=N\left(x \mid \mu, \Lambda^{-1}\right) \\
+p(y \mid x) &amp;=N\left(y \mid A x+b, L^{-1}\right)
+\end{aligned}\]
+
+<p>the marginal distribution of y is given by:</p>
+
+\[p(y)=N\left(y \mid A \mu+b, L^{-1}+A \Lambda^{-1} A^{T}\right)\]
+
+<h2 id="mixing-all-stuff-together">Mixing all stuff together</h2>
+
+<p>So, we have all the ingredients. Let’s get them in one bowl and mix them together.</p>
+
+\[\begin{aligned}
+p\left(w \mid x^{*}, x, y, \alpha, \beta\right) &amp;=N\left(w \mid M_{N}, S_{N}\right) \\
+p\left(y^{*} \mid w, \beta\right) &amp;=N\left(f(x, w), \beta^{-1}\right)
+\end{aligned}\]
+
+<p>Look at these two for one moment. The p(x) is equivalent to the first equation and p(y|x) is like the second equation. If we plug it in, we get the following equations (Check yourself):</p>
+
+\[\begin{aligned}
+p\left(y^{*} \mid y, x, x^{*}, \alpha, \beta\right) &amp;=N\left(y^{*} \mid M_{N}^{T} \phi(x), \sigma_{N}^{2}(x)\right) \\
+\sigma_{N}^{2}(x) &amp;=\beta^{-1} \phi^{T}(x) S_{N} \phi(x)
+\end{aligned}\]
+
+<p>And finally, if we plug all these values into equation p(y), we get the following:</p>
+
+\[\begin{aligned}
+p\left(y^{*} \mid y, x, x^{*}, \alpha, \beta\right) &amp;=N\left(y^{*} \mid M_{N}^{T} \phi(x), \sigma_{N}^{2}(x)\right) \\
+\sigma_{N}^{2}(x) &amp;=\beta^{-1} \phi^{T}(x) S_{N} \phi(x)
+\end{aligned}\]
+
+<p>pfff, we got the mean and variance of y*. Now we are certainly finished. I hope this helped you!</p>
+
+<p>Thank you for reading.</p>]]></content><author><name></name></author><summary type="html"><![CDATA[I just want to derive the formulas from scratch.]]></summary></entry></feed>

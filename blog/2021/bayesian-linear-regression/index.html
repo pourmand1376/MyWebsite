@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+<title>
+
+  Amir Pourmand
+
+
+  | Bayesian Linear Regression Full Derivation
+
+</title>
+<meta name="description" content="A place to share my thoughts and also host the resume! 
+">
+
+<!-- Open Graph -->
+
+<meta property="og:site_name" content="A place to share my thoughts and also host the resume! 
+" />
+<meta property="og:type" content="object" />
+<meta property="og:title" content="Amir Pourmand | امیر پورمند" />
+<meta property="og:url" content="https://amirpourmand.ir/blog/2021/bayesian-linear-regression/" />
+<meta property="og:description" content="Bayesian Linear Regression Full Derivation" />
+<meta property="og:image" content="/assets/img/opengraph.png" />
+
+
+<!-- Bootstrap & MDB -->
+<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet" integrity="sha512-MoRNloxbStBcD8z3M/2BmnT+rg4IsMxPkXaGh2zD6LGNNFE80W3onsAhRcMAMrSoyWL9xD7Ert0men7vR8LUZg==" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/css/mdb.min.css" integrity="sha512-RO38pBRxYH3SoOprtPTD86JFOclM51/XTIdEPh5j8sj4tp8jmQIx26twG52UaLi//hQldfrh7e51WzP9wuP32Q==" crossorigin="anonymous" />
+
+<!-- Fonts & Icons -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css"  integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog==" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/academicons/1.9.0/css/academicons.min.css" integrity="sha512-W4yqoT1+8NLkinBLBZko+dFB2ZbHsYLDdr50VElllRcNt2Q4/GSs6u71UHKxB7S6JEMCp5Ve4xjh3eGQl/HRvg==" crossorigin="anonymous">
+<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:100,300,400,500,700|Material+Icons">
+
+<!-- Code Syntax Highlighting -->
+<link rel="stylesheet" href="https://gitcdn.link/repo/jwarby/jekyll-pygments-themes/master/github.css" />
+
+<!-- Styles -->
+
+<link rel="shortcut icon" href="/assets/img/favicon.ico"/>
+
+
+<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="canonical" href="https://amirpourmand.ir/blog/2021/bayesian-linear-regression/">
+
+<meta name="google-site-verification" content="l6RhusmfgSX-TJDRlJA7d5bn6MknReY9_IE3ds5OyGY" />
+
+<!-- Dark Mode -->
+<script src="/assets/js/theme.js"></script>
+<script src="/assets/js/dark_mode.js"></script>
+
+
+
+  </head>
+
+  <body class="fixed-top-nav sticky-bottom-footer">
+
+    <!-- Header -->
+
+    <header>
+
+    <!-- Nav Bar -->
+    <nav id="navbar" class="navbar navbar-light navbar-expand-sm fixed-top">
+    <div class="container">
+      
+      <a class="navbar-brand title font-weight-lighter" href="https://amirpourmand.ir/">
+       Amir Pourmand
+      </a>
+      
+      <!-- Navbar Toggle -->
+      <button class="navbar-toggler collapsed ml-auto" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar top-bar"></span>
+        <span class="icon-bar middle-bar"></span>
+        <span class="icon-bar bottom-bar"></span>
+      </button>
+      <div class="collapse navbar-collapse text-right" id="navbarNav">
+        <ul class="navbar-nav ml-auto flex-nowrap">
+          <!-- About -->
+          <li class="nav-item ">
+            <a class="nav-link" href="/">
+              Home
+              
+            </a>
+          </li>
+          
+          <!-- Blog -->
+          <li class="nav-item active">
+            <a class="nav-link" href="/blog/">
+              Blog
+              
+            </a>
+          </li>
+          
+          <!-- Other pages -->
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          <li class="nav-item ">
+              <a class="nav-link" href="/bio/">
+                Biography
+                
+              </a>
+          </li>
+          
+          
+          
+          
+          
+          <li class="nav-item ">
+              <a class="nav-link" href="/code">
+                Code
+                
+              </a>
+          </li>
+          
+          
+          
+          
+          
+          <li class="nav-item ">
+              <a class="nav-link" href="/assets/pdf/cv.pdf">
+                Curriculum Vitae
+                
+              </a>
+          </li>
+          
+          
+          
+          
+          
+          
+          
+          <li class="nav-item ">
+              <a class="nav-link" href="/publications/">
+                Publications
+                
+              </a>
+          </li>
+          
+          
+          
+          
+          
+          
+          
+          
+            <div class="toggle-container">
+              <a id="light-toggle">
+                  <i class="fas fa-moon"></i>
+                  <i class="fas fa-sun"></i>
+              </a>
+            </div>
+          
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+</header>
+
+
+    <!-- Content -->
+
+    <div class="container mt-5">
+      
+
+
+
+
+
+<div class="post">
+
+  <header class="post-header">
+    <h1 class="post-title">Bayesian Linear Regression Full Derivation</h1>
+    <p class="post-meta">March 20, 2021</p>
+    <p class="post-tags">
+      <a href="/blog/2021"> <i class="fas fa-calendar fa-sm"></i> 2021 </a>
+      
+
+      
+
+    </p>
+  </header>
+
+  <article class="post-content">
+    <h2 id="introduction">Introduction</h2>
+
+<p>Many articles like <a href="https://towardsdatascience.com/introduction-to-bayesian-linear-regression-e66e60791ea7" target="_blank" rel="noopener noreferrer">this</a> in the <a href="https://towardsdatascience.com/" target="_blank" rel="noopener noreferrer">towardsdatascience</a> tell us how to use Bayesian Linear Regression and why. I am not going to repeat that. I want to derive the formulas from scratch entirely.</p>
+
+<p>I also understand that comprehending this stuff is slightly challenging if you don’t have a strong mathematics background.</p>
+
+<blockquote>
+  <p>Note: All of my notation is from Bishop’s book.</p>
+</blockquote>
+
+<p>The main difference between Bayesian and Non-Bayesian regression is that Bayesian regression assumes that weights are Random variables.</p>
+
+<p>First, we should define the distribution of <strong>w</strong> and <strong>e</strong> and also our target function. We assume that we have a Gaussian prior over <strong>w,</strong> which is our weight vector, So</p>
+
+\[w \sim N(m_0,s_0)\]
+
+<p>which means that we have m0 as our mean vector, and s0 is our covariance matrix. Now, if we write our target function, we would have:</p>
+
+\[\begin{aligned}
+y &amp;=f(x, w)+\epsilon \\
+&amp;=w^{T} \phi(x)+\epsilon
+\end{aligned}\]
+
+<p>In which <strong>φ</strong> is any transformation on x. If you are not familiar with transformations, assume that φ(x) = x, and you’re good to go.</p>
+
+<p>Just one thing is missing, what is the distribution of error?</p>
+
+\[\epsilon \sim N\left(0, \sigma^{2}\right)=N\left(0, \beta^{-1}\right)\]
+
+<blockquote>
+  <p>Note: we define β as the noise precision parameter, which is the reciprocal noise variance.</p>
+</blockquote>
+
+<p>The Likelihood function would be:</p>
+
+\[p(y \mid X, w, \beta)=\prod_{i=1}^{N} p\left(y_{n} \mid x_{n}, w, b\right)=\prod_{i=1}^{N} N\left(y_{n} \mid w^{T} \phi\left(x_{n}\right), \beta^{-1}\right)\]
+
+<p>Next, we can compute the posterior distribution, which is proportional to the product of likelihood and prior. Note that we already know that because the prior is Gaussian, the posterior would be gaussian too! But As I said, I want to compute that to make sure everything is right entirely.</p>
+
+\[\text { posterior } \propto \text { likelihood } \times \text { prior }\]
+
+<h2 id="deriving-prior-and-posterior-distributions">Deriving prior and posterior distributions</h2>
+
+<p>The posterior is computed by the usual procedure of <strong>completing the square</strong>, so I ignore all constants and focus on the power of exponentials. Again, notice that we want to compute the mean and variance of the posterior.</p>
+
+<p>From likelihood perspective, we have:</p>
+
+\[\log \text { likelihood }=\frac{-\beta}{2} \sum_{i=1}^{N}\left(y_{n}-w^{T} \phi(x)\right)^{2}\]
+
+<p>and from prior perspective, we have:</p>
+
+\[\text { log prior }=\frac{-1}{2}\left(w-m_{0}\right)^{T} S_{0}^{-1}\left(w-m_{0}\right)\]
+
+<p>You already know that product in logarithm would result in sum. So we have:</p>
+
+\[\begin{aligned}
+\log \text { Posterior } &amp;=\frac{-\beta}{2} \sum_{n=1}^{N}\left(y_{n}-w^{T} \phi(x)\right)^{2}+\frac{-1}{2}\left(w-m_{0}\right)^{T} S_{0}^{-1}\left(w-m_{0}\right) \\
+&amp;\left.=\frac{-\beta}{2} \sum_{n=1}^{N}\left(y_{n}^{2}-2 y_{n} w^{T} \phi(x)+w^{T} \phi\left(x_{n}\right) \phi\left(x_{n}\right)^{T} w\right)\right)+\frac{-1}{2}\left(w-m_{0}\right)^{T} S_{0}{ }^{1}\left(w-m_{0}\right) \\
+&amp;=\frac{-1}{2} w^{T}\left[\sum_{n=1}^{N} \beta \phi\left(x_{n}\right) \phi\left(x_{n}\right)^{T}+S_{0}^{-1}\right] w+\frac{-1}{2}\left[-2 m_{0}^{T} s_{0}-\frac{1}{2} \sum_{n=1}^{N} 2 \beta y_{n} \phi\left(x_{n}\right)^{T}\right] w+const
+\end{aligned}\]
+
+<p>Then from comparing the powers with standard Gaussian, we have:</p>
+
+\[S_{N}^{-1}=S_{0}^{-1}+\beta \phi^{T} \phi\]
+
+<p>and by comparing the second expression we get:</p>
+
+\[\begin{array}{c}
+-2 m_{N}^{T} S_{N}^{-1}=-2 m_{0}^{T} S_{0}^{-1}-2 \beta y^{T} \phi \\
+m_{N}=S_{N}^{T}\left(S_{0}^{T}\right)^{-1} m_{0}+S_{N}^{T} \beta y^{T} \phi
+\end{array}\]
+
+<p>So we computed the mean and variance of the posterior distribution, but It is not the end. We should use predictive posterior to derive the final result.</p>
+
+<h2 id="deriving-predictive-posterior-distribution">Deriving predictive posterior distribution</h2>
+
+<p>Let’s get back to our big picture. We computed the posterior, which is the distribution of weights, but what is the distribution of our prediction (y<em>) when we have new data (x</em>)?</p>
+
+<p>Let’s say our new data is (<strong>x<em>,y</em></strong>), and we want to derive the distribution of y* given x*. What should we do? The answer lies in <strong>predictive distribution.</strong></p>
+
+<p>Wait. We can have one slight improvement here. Because we can always normalize the input data to have a mean of 0, we can assume that our weight prior is also Normal with a mean of 0. So we can take that:</p>
+
+\[p(w \mid \alpha)=N\left(w \mid 0, \alpha^{-1} I\right)\]
+
+<p>So the posterior mean and variance would be:</p>
+
+\[\begin{array}{r}
+M_{N}=\beta S_{N} \phi^{T} y \\
+S_{N}=\alpha I+\beta \phi^{T} \phi
+\end{array}\]
+
+<p>We can not go further until we know how to get the predictive posterior. So the predictive posterior distribution is defined as:</p>
+
+\[p\left(y^{*} \mid x^{*}, x, y, \alpha, \beta\right)=\int p\left(y^{*} \mid x^{*}, w, \beta\right) p\left(w \mid x^{*}, x, y, \alpha, \beta\right) d w\]
+
+<p>The first time I saw this formula, I wanted to run away and live in the desert. Bear with me, All we’re doing is integrating out <strong>w</strong> since we don’t know what it is. Sometimes, there is a more straightforward way. Fortunately, a proven formula can help us skip the integration part and get to the result.</p>
+
+<blockquote>
+  <p>Note: If you want to prove it yourself, you can look at Marginal and conditional Gaussian from the bishop’s book.</p>
+</blockquote>
+
+<p><strong>Theorem:</strong> Given a marginal distribution for <strong>x</strong> and a conditional distribution for <strong>y</strong> in the form:</p>
+
+\[\begin{aligned}
+p(x) &amp;=N\left(x \mid \mu, \Lambda^{-1}\right) \\
+p(y \mid x) &amp;=N\left(y \mid A x+b, L^{-1}\right)
+\end{aligned}\]
+
+<p>the marginal distribution of y is given by:</p>
+
+\[p(y)=N\left(y \mid A \mu+b, L^{-1}+A \Lambda^{-1} A^{T}\right)\]
+
+<h2 id="mixing-all-stuff-together">Mixing all stuff together</h2>
+
+<p>So, we have all the ingredients. Let’s get them in one bowl and mix them together.</p>
+
+\[\begin{aligned}
+p\left(w \mid x^{*}, x, y, \alpha, \beta\right) &amp;=N\left(w \mid M_{N}, S_{N}\right) \\
+p\left(y^{*} \mid w, \beta\right) &amp;=N\left(f(x, w), \beta^{-1}\right)
+\end{aligned}\]
+
+<p>Look at these two for one moment. The p(x) is equivalent to the first equation and p(y|x) is like the second equation. If we plug it in, we get the following equations (Check yourself):</p>
+
+\[\begin{aligned}
+p\left(y^{*} \mid y, x, x^{*}, \alpha, \beta\right) &amp;=N\left(y^{*} \mid M_{N}^{T} \phi(x), \sigma_{N}^{2}(x)\right) \\
+\sigma_{N}^{2}(x) &amp;=\beta^{-1} \phi^{T}(x) S_{N} \phi(x)
+\end{aligned}\]
+
+<p>And finally, if we plug all these values into equation p(y), we get the following:</p>
+
+\[\begin{aligned}
+p\left(y^{*} \mid y, x, x^{*}, \alpha, \beta\right) &amp;=N\left(y^{*} \mid M_{N}^{T} \phi(x), \sigma_{N}^{2}(x)\right) \\
+\sigma_{N}^{2}(x) &amp;=\beta^{-1} \phi^{T}(x) S_{N} \phi(x)
+\end{aligned}\]
+
+<p>pfff, we got the mean and variance of y*. Now we are certainly finished. I hope this helped you!</p>
+
+<p>Thank you for reading.</p>
+
+  </article>
+
+  
+    <div id="disqus_thread"></div>
+    <script type="text/javascript">
+      var disqus_shortname  = 'pourmand';
+      var disqus_identifier = '/blog/2021/bayesian-linear-regression';
+      var disqus_title      = "Bayesian Linear Regression Full Derivation";
+      (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript" target="_blank" rel="noopener noreferrer">comments powered by Disqus.</a>
+</noscript>
+  
+
+</div>
+
+    </div>
+
+    <!-- Footer -->
+
+    
+<footer class="sticky-bottom mt-5">
+  <div class="container">
+    © Copyright 2022 Amir  Pourmand.
+    Powered by <a href="http://jekyllrb.com/" target="_blank" rel="noopener noreferrer">Jekyll</a> with <a href="https://github.com/alshedivat/al-folio" target="_blank" rel="noopener noreferrer">al-folio</a> theme. Photos from <a href="https://unsplash.com" target="_blank" rel="noopener noreferrer">Unsplash</a>.
+
+    
+    
+    Last updated: February 02, 2022.
+    
+  </div>
+</footer>
+
+
+
+  </body>
+  
+<!-- JQuery -->
+<!-- jQuery -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script>
+
+
+<!-- Theming-->
+
+<script src="/assets/js/theme.js"></script>
+<script src="/assets/js/dark_mode.js"></script>
+
+
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-199451648-2"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag() { dataLayer.push(arguments); }
+  gtag('js', new Date());
+
+  gtag('config', 'UA-199451648-2');
+</script>
+
+
+
+<!-- Panelbear Analytics - We respect your privacy -->
+<script async src="https://cdn.panelbear.com/analytics.js?site=GYYavLkyYFV"></script>
+<script>
+    window.panelbear = window.panelbear || function() { (window.panelbear.q = window.panelbear.q || []).push(arguments); };
+    panelbear('config', { site: 'GYYavLkyYFV' });
+</script>
+
+
+  <!-- jQuery -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script>
+
+  <!-- Bootsrap & MDB scripts -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.4.4/umd/popper.min.js" integrity="sha512-eUQ9hGdLjBjY3F41CScH3UX+4JDSI9zXeroz7hJ+RteoCaY+GP/LDoM8AO+Pt+DRFw3nXqsjh9Zsts8hnYv8/A==" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha512-M5KW3ztuIICmVIhjSqXe01oV2bpe248gOxqmlcYrEzAvws7Pw3z6BK0iGbrwvdrUQUhi3eXgtxp5I8PDo9YfjQ==" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/js/mdb.min.js" integrity="sha512-Mug9KHKmroQFMLm93zGrjhibM2z2Obg9l6qFG2qKjXEXkMp/VDkI4uju9m4QKPjWSwQ6O2qzZEnJDEeCw0Blcw==" crossorigin="anonymous"></script>
+
+  
+<!-- Mansory & imagesLoaded -->
+<script defer src="https://unpkg.com/masonry-layout@4/dist/masonry.pkgd.min.js"></script>
+<script defer src="https://unpkg.com/imagesloaded@4/imagesloaded.pkgd.min.js"></script>
+<script defer src="/assets/js/mansory.js" type="text/javascript"></script>
+
+
+  
+<!-- Enable Tooltips -->
+<script type="text/javascript">
+$(function () {$('[data-toggle="tooltip"]').tooltip()})
+</script>
+
+
+
+<!-- Medium Zoom JS -->
+<script src="https://cdn.jsdelivr.net/npm/medium-zoom@1.0.6/dist/medium-zoom.min.js" integrity="sha256-EdPgYcPk/IIrw7FYeuJQexva49pVRZNmt3LculEr7zM=" crossorigin="anonymous"></script>
+<script src="/assets/js/zoom.js"></script>
+
+
+<!-- Load Common JS -->
+<script src="/assets/js/common.js"></script>
+
+
+<!-- Dark Mode -->
+<script src="/assets/js/theme.js"></script>
+<script src="/assets/js/dark_mode.js"></script>
+
+  
+<!-- MathJax -->
+<script type="text/javascript">
+  window.MathJax = {
+    tex: {
+      tags: 'ams'
+    }
+  };
+</script>
+<script defer type="text/javascript" id="MathJax-script" src="https://cdn.jsdelivr.net/npm/mathjax@3.2.0/es5/tex-mml-chtml.js"></script>
+<script defer src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+
+
+
+</html>
